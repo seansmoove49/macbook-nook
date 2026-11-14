@@ -1,2 +1,7 @@
 [tools]
 node = "lts"
+uv = "latest"
+
+[tasks.bootstrap]
+description = "Install the latest stable Python through uv"
+run = "uv python install --default"
