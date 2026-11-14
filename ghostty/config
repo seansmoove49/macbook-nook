@@ -1,0 +1,45 @@
+# window-decoration = false
+# New windows start in ~/workspace as a single pane (no auto split).
+# New tabs inherit the current pwd.
+working-directory = /Users/seanw/workspace
+window-inherit-working-directory = false
+tab-inherit-working-directory = true
+
+# Window size: 100 cols x 30 rows, centered on the 1512x982 built-in display.
+# Ghostty has no "center" option, so position is calculated from the screen size.
+window-width = 100
+window-height = 30
+window-position-x = 225
+window-position-y = 165
+maximize = false
+fullscreen = false
+
+# Reopen windows/splits (layout + cwd, not processes) after quitting Ghostty.
+window-save-state = never
+
+
+# Pane layouts: ctrl+b then 1-4 (splits the focused pane; use from a single-pane tab).
+# 1 = zoom the focused pane to fill the window (press again to unzoom).
+keybind = ctrl+b>1=toggle_split_zoom
+# 2 = side by side
+keybind = ctrl+b>2=new_split:right
+keybind = chain=equalize_splits
+# 3 = left | right-top / right-bottom
+keybind = ctrl+b>3=new_split:right
+keybind = chain=new_split:down
+keybind = chain=equalize_splits
+# 4 = 2x2 grid
+keybind = ctrl+b>4=new_split:right
+keybind = chain=new_split:down
+keybind = chain=goto_split:left
+keybind = chain=new_split:down
+keybind = chain=equalize_splits
+# ctrl+b twice still sends a plain ctrl+b (e.g. Claude Code's "background task").
+keybind = ctrl+b>ctrl+b=text:\x02
+
+# Idle shells: faint dotted Ghostty ghost centered in every pane (make-dotted-logos.py).
+# CLI wrappers (claude/devin/opencode/codex) draw their own logo with an opaque backing on top.
+background-image = /Users/seanw/.config/ghostty/ghostty-logo-bg.png
+background-image-position = center
+background-image-fit = contain
+background-image-opacity = 1
