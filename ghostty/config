@@ -1,4 +1,5 @@
 # window-decoration = false
+command = /opt/homebrew/bin/fish
 # New windows start in ~/workspace as a single pane (no auto split).
 # New tabs inherit the current pwd.
 working-directory = /Users/seanw/workspace
