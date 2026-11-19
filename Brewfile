@@ -1,4 +1,5 @@
 # Command-line tools
+brew "fish"
 brew "mise"
 
 # Applications
