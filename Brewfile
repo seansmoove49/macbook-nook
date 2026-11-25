@@ -1,4 +1,6 @@
 # Command-line tools
+brew "colima"
+brew "docker"
 brew "fish"
 brew "mise"
 
