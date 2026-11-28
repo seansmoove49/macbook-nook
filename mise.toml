@@ -7,22 +7,10 @@ description = "Install the latest stable Python through uv"
 run = "uv python install --default"
 
 [tasks.set-shell]
-description = "Make Homebrew's fish the login shell, including for apps opened before the next log-out"
+description = "Make fish the login shell"
 run = """
-#!/usr/bin/env bash
-set -euo pipefail
 fish="$(brew --prefix)/bin/fish"
-[ -x "$fish" ] || { echo "fish isn't installed; run 'brew bundle' first" >&2; exit 1; }
-
-# chsh only accepts shells listed in /etc/shells
 grep -qxF "$fish" /etc/shells || echo "$fish" | sudo tee -a /etc/shells >/dev/null
-
-# Login shell for new terminal sessions
-[ "$(dscl . -read ~ UserShell | awk '{print $2}')" = "$fish" ] || chsh -s "$fish"
-
-# GUI apps inherit SHELL from the login session, so until the next log-out they
-# would keep the old shell. This makes apps opened from now on use fish.
+chsh -s "$fish"
 launchctl setenv SHELL "$fish"
-
-echo "Login shell is now $fish. Quit and reopen open apps (e.g. Claude, VS Code) or log out."
 """
